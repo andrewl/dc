@@ -28,6 +28,7 @@ function ddc_article_page_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -71,7 +72,6 @@ function ddc_article_page_views_default_views() {
   $handler->display->display_options['filters']['field_tags_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_tags_tid']['expose']['operator_id'] = 'field_tags_tid_op';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['label'] = 'Display only articles tagged with this term';
-  $handler->display->display_options['filters']['field_tags_tid']['expose']['description'] = 'Display only articles tagged with this term';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['operator'] = 'field_tags_tid_op';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['identifier'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['remember_roles'] = array(
