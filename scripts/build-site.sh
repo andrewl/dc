@@ -20,3 +20,4 @@ drush -r $DRUPAL_ROOT dis bartik -y
 drush -r $DRUPAL_ROOT gent tags 7 -y
 drush -r $DRUPAL_ROOT genc --types=author 10 0 -y
 drush -r $DRUPAL_ROOT genc --types=article 500 0 -y
+drush eval 'node_access_rebuild();'

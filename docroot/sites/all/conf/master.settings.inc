@@ -37,6 +37,7 @@ $conf['master_modules'] = array(
     'strongarm',
     'features',
     'fe_block',
+    'ddc_article_permissions',
 
     //Features
     'ddc_author',

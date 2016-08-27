@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file
+ * Code to prevent users from viewing articles they're not entitled to.
+ */
+
+/**
+ * Implements hook_node_access_records().
+ *
+ *
+ */
+function ddc_article_permissions_node_access_records($node) {
+
+  $grants = array();
+
+  if ($node->type === 'article' && $node->field_special[LANGUAGE_NONE][0]['value'] == 1) {
+    $grants[] = array(
+      'realm' => 'ddc_special_article',
+      'gid' => 1001,
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+      'priority' => 0,
+    );
+  }
+
+  return $grants;
+}
+
+/**
+ * Implements hook_node_grants().
+ */
+function ddc_article_permissions_node_grants($account, $op) {
+  $grants = array();
+
+	if ($account->uid == 0) {
+    $grants['ddc_special_article'][] = array(1001);
+  }
+  
+  return $grants;
+}
