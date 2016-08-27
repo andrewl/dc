@@ -194,32 +194,6 @@ function ddc_block_default_fe_block_settings() {
     'visibility' => 0,
   );
 
-  $export['search-form'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'form',
-    'module' => 'search',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'ddc_theme' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'ddc_theme',
-        'weight' => 0,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => -10,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
   $export['shortcut-shortcuts'] = array(
     'cache' => -1,
     'custom' => 0,

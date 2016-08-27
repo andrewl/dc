@@ -22,7 +22,6 @@ $conf['master_modules'] = array(
   'base' => array(
     'coffee',
     'shortcut',
-    'search',
     'rdf',
     'path',
     'number',
@@ -43,6 +42,7 @@ $conf['master_modules'] = array(
     'ddc_author',
     'ddc_article',
     'ddc_block',
+    'ddc_search',
     'ddc_common',
     'ddc_filter',
     'ddc_homepage',
