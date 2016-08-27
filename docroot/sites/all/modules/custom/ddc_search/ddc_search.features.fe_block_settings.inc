@@ -34,7 +34,7 @@ function ddc_search_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Filter by Tags',
+    'title' => '',
     'visibility' => 0,
   );
 
@@ -60,7 +60,7 @@ function ddc_search_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Filter by Author',
+    'title' => 'Filter by Author:',
     'visibility' => 0,
   );
 

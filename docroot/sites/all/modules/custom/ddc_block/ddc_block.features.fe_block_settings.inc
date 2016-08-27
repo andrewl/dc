@@ -233,7 +233,7 @@ function ddc_block_default_fe_block_settings() {
         'region' => 'help',
         'status' => 1,
         'theme' => 'ddc_theme',
-        'weight' => 5,
+        'weight' => 0,
       ),
       'seven' => array(
         'region' => 'help',
@@ -360,8 +360,8 @@ function ddc_block_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'ddc_theme' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'footer',
+        'status' => 1,
         'theme' => 'ddc_theme',
         'weight' => 10,
       ),
@@ -412,8 +412,8 @@ function ddc_block_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'ddc_theme' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'sidebar_first',
+        'status' => 1,
         'theme' => 'ddc_theme',
         'weight' => 0,
       ),
