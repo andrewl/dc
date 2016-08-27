@@ -21,4 +21,4 @@ drush -r $DRUPAL_ROOT fr ddc_search ddc_block -y
 drush -r $DRUPAL_ROOT gent tags 7 -y
 drush -r $DRUPAL_ROOT genc --types=author 10 0 -y
 drush -r $DRUPAL_ROOT genc --types=article 500 0 -y
-drush eval 'node_access_rebuild();'
+drush -r $DRUPAL_ROOT eval 'node_access_rebuild();'
