@@ -40,6 +40,7 @@ $conf['master_modules'] = array(
     'fe_block',
 
     //Features
+    'ddc_author',
     'ddc_article',
     'ddc_block',
     'ddc_common',
