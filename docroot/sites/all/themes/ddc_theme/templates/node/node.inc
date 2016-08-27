@@ -29,4 +29,13 @@ function ddc_theme_preprocess_node__article__teaser(&$variables) {
 
   // Create linked title.
   $variables['linked_title'] = l($variables['title'], 'node/' . $variables['nid']);
+
+  // Add a class to the article if the special field is selected
+  $variables['article_class'] = "normal";
+
+  // @todo - should check whether we actually have a node, perhaps wrap the object too?
+  if ($variables['node']->field_special[LANGUAGE_NONE][0]['value'] == 1) {
+    $variables['article_class'] = "special";
+  }
+
 }
