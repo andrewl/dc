@@ -22,6 +22,14 @@ function ddc_article_permissions_node_access_records($node) {
       'grant_delete' => 0,
       'priority' => 0,
     );
+    $grants[] = array(
+      'realm' => 'ddc_special_article',
+      'gid' => 1002,
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+      'priority' => 0,
+    );
   }
 
   return $grants;
@@ -35,6 +43,9 @@ function ddc_article_permissions_node_grants($account, $op) {
 
 	if ($account->uid == 0) {
     $grants['ddc_special_article'][] = array(1001);
+  }
+  else {
+    $grants['ddc_special_article'][] = array(1002);
   }
   
   return $grants;
