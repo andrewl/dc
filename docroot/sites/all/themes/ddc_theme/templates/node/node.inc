@@ -27,6 +27,7 @@ function ddc_theme_preprocess_node(&$variables) {
 
 function ddc_theme_preprocess_node__article__teaser(&$variables) {
 
+
   // Create linked title.
   $variables['linked_title'] = l($variables['title'], 'node/' . $variables['nid']);
 
@@ -39,3 +40,24 @@ function ddc_theme_preprocess_node__article__teaser(&$variables) {
   }
 
 }
+
+function ddc_theme_preprocess_node__article__full(&$variables) {
+  $other_article_items = array();
+  if (isset($variables['field_author'][0]['target_id'])) {
+    $this_article_id = $variables['nid'];
+    $author_id = $variables['field_author'][0]['target_id'];
+    $author_wrapper = new Drupal\ddc_author\Author\AuthorWrapper($author_id);
+    $article_ids = $author_wrapper->getArticles();
+    foreach ($article_ids as $id => $title) {
+      if ($id != $this_article_id) {
+        $other_article_items[] = l($title, "/node/{$id}");
+      }
+    }
+  }
+  $variables['other_articles'] = array(
+    '#title' => t("Other Articles By This Author"),
+    '#items' => $other_article_items,
+    '#theme' => 'item_list',
+  );
+}
+

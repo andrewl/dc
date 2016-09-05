@@ -16,6 +16,7 @@
         <p><?php print render($content['field_author']); ?> <?php print render($content['field_publication_date']); ?></p>
         <?php print render($content['body']); ?>
         <?php print render($content['tags']); ?>
+        <?php print render($other_articles); ?>
       </div>
     </div>
   </article>
