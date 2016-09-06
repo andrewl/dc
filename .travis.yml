@@ -17,7 +17,6 @@ mysql:
 before_install:
   - composer self-update
   - composer global require drush/drush
-  - sudo apt-get -y php-cgi php-mysql
 
 before_script:
   - sudo apt-get update
