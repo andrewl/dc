@@ -4,9 +4,10 @@ php:
   - 7.0
 
 env:
-  - DATABASE='drupal'
-  - DB_USERNAME='root'
-  - DB_PASSWORD='root'
+  global:
+    - DATABASE='drupal'
+    - DB_USERNAME='root'
+    - DB_PASSWORD='root'
 
 mysql:
   database: $DATABASE
