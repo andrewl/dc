@@ -22,7 +22,7 @@ install:
   - pear install drush/drush
 
 before_script:
-	- sudo apt-get update
+  - sudo apt-get update
   - sudo apt-get install apache2 libapache2-mod-fastcgi
   # enable php-fpm
   - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
@@ -38,17 +38,17 @@ before_script:
   - drush dl drupal-7.x --destination=$DRUPAL_ROOT -y
   - drush si minimal --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" -y
   - echo "require_once 'sites/all/conf/master.settings.inc';" >> $DRUPAL_ROOT/sites/default/settings.php
-	- drush -r $DRUPAL_ROOT en master -y
-	- drush -r $DRUPAL_ROOT master-ensure-modules --scope=local -y 
-	- drush -r $DRUPAL_ROOT en ddc_theme -y
-	- drush -r $DRUPAL_ROOT vset theme_default ddc_theme -y
-	- drush -r $DRUPAL_ROOT dis bartik -y
-	- drush -r $DRUPAL_ROOT fr ddc_search ddc_block -y
-	- drush -r $DRUPAL_ROOT gent tags 7 -y
-	- drush -r $DRUPAL_ROOT genc --types=author 10 0 -y
-	- drush -r $DRUPAL_ROOT genc --types=article 500 0 -y
-	- drush -r $DRUPAL_ROOT eval 'node_access_rebuild();'
-	- drush -r $DRUPAL_ROOT ucrt ronald --password="password"
+  - drush -r $DRUPAL_ROOT en master -y
+  - drush -r $DRUPAL_ROOT master-ensure-modules --scope=local -y
+  - drush -r $DRUPAL_ROOT en ddc_theme -y
+  - drush -r $DRUPAL_ROOT vset theme_default ddc_theme -y
+  - drush -r $DRUPAL_ROOT dis bartik -y
+  - drush -r $DRUPAL_ROOT fr ddc_search ddc_block -y
+  - drush -r $DRUPAL_ROOT gent tags 7 -y
+  - drush -r $DRUPAL_ROOT genc --types=author 10 0 -y
+  - drush -r $DRUPAL_ROOT genc --types=article 500 0 -y
+  - drush -r $DRUPAL_ROOT eval 'node_access_rebuild();'
+  - drush -r $DRUPAL_ROOT ucrt ronald --password="password"
 
 script:
   - curl "http://127.0.0.1"
