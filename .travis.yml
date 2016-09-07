@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 7.0
+  - 5.6
 
 env:
   global:
@@ -21,13 +21,14 @@ before_install:
 before_script:
   - sudo apt-get update
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-fastcgi make
+  - sudo apt-get install -y --force-yes php5-dev php-pear php5-mysql php5-curl php5-gd php5-json php5-sqlite php5-pgsql
   # enable php-fpm
   - cp travis-support/www.conf ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/
   - sudo a2enmod rewrite actions fastcgi alias
   - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   # configure apache virtual hosts
-  - sudo cp -f build/travis-ci-apache /etc/apache2/sites-available/default
+  - sudo cp -f travis-support/apache-vhost.conf /etc/apache2/sites-available/default
   - cat /etc/apache2/sites-available/default
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
   - sudo service apache2 restart
