@@ -37,17 +37,17 @@ install:
   - sudo chmod +w sites/default/settings.php
   - echo "require_once 'sites/all/conf/master.settings.inc';" >> sites/default/settings.php
   - sudo chmod -w sites/default/settings.php
-  - drush -r en master -y
-  - drush -r master-ensure-modules --scope=local -y
-  - drush -r en ddc_theme -y
-  - drush -r vset theme_default ddc_theme -y
-  - drush -r dis bartik -y
-  - drush -r fr ddc_search ddc_block -y
-  - drush -r gent tags 7 -y
-  - drush -r genc --types=author 10 0 -y
-  - drush -r genc --types=article 500 0 -y
-  - drush -r eval 'node_access_rebuild();'
-  - drush -r ucrt ronald --password="password"
+  - drush en master -y
+  - drush master-ensure-modules --scope=local -y
+  - drush en ddc_theme -y
+  - drush vset theme_default ddc_theme -y
+  - drush dis bartik -y
+  - drush fr ddc_search ddc_block -y
+  - drush gent tags 7 -y
+  - drush genc --types=author 10 0 -y
+  - drush genc --types=article 500 0 -y
+  - drush eval 'node_access_rebuild();'
+  - drush ucrt ronald --password="password"
 
 script:
   - curl "http://127.0.0.1"
