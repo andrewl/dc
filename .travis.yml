@@ -8,6 +8,8 @@ env:
     - DATABASE='drupal'
     - DB_USERNAME='root'
     - DB_PASSWORD='root'
+    - SITENAME="DDC Publishing"
+    - SITEMAIL=andrew@andrewl.net
 
 mysql:
   database: $DATABASE
@@ -31,22 +33,9 @@ before_install:
 
 install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - cd docroot
-  - drush si standard --site-name="DCC Publishing" --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" -y
-  - sudo chmod +w sites/default/settings.php
-  - echo "require_once 'sites/all/conf/master.settings.inc';" >> sites/default/settings.php
-  - sudo chmod -w sites/default/settings.php
-  - drush en master -y
-  - drush master-ensure-modules --scope=local -y
-  - drush en ddc_theme -y
-  - drush vset theme_default ddc_theme -y
-  - drush dis bartik -y
-  - drush fr ddc_search ddc_block -y
-  - drush gent tags 7 -y
-  - drush genc --types=author 10 0 -y
-  - drush genc --types=article 500 0 -y
-  - drush eval 'node_access_rebuild();'
-  - drush ucrt ronald --password="password"
+  - export DRUPAL_ROOT=`pwd`/docroot
+  - cd scripts
+  - ./build-site.sh
 
 script:
   - curl "http://127.0.0.1"
