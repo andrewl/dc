@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-if [ -z "$DB_PASSWORD" ]
+if [ -z "$DB_PASSWORD" ]; then
 else
   DB_PASSWORD=":$DB_PASSWORD"
 fi
