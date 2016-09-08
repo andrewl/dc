@@ -17,6 +17,7 @@ before_install:
   - sudo apt-get update
   - composer self-update
   - composer global require drush/drush
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - sudo apt-get install apache2 libapache2-mod-fastcgi
   # enable php-fpm
   - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
