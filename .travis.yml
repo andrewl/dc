@@ -31,7 +31,7 @@ before_install:
   - sudo service apache2 restart
   - export DRUPAL_ROOT=`pwd`/docroot
   # install solr
-  - curl -sSL https://raw.githubusercontent.com/zero2one/travis-solr/master/travis-solr.sh | DEBUG=1 SOLR_VERSION=4.10.2 SOLR_CONFS="schema.xml solrconfig.xml" 
+  - curl -sSL https://raw.githubusercontent.com/zero2one/travis-solr/master/travis-solr.sh | DEBUG=1 SOLR_VERSION=4.10.2 SOLR_CONFS="schema.xml solrconfig.xml" bash
   - cp $DRUPAL_ROOT/sites/all/modules/contrib/search_api_solr/solr-conf/4.x/schema.xml solr-4.10.2/example/solr/collection1/conf
 
 install:
