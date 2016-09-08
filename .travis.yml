@@ -33,11 +33,12 @@ install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - cd docroot
   - drush si minimal --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" -y
+  - drush dis update -y
   - sudo chmod +w sites/default/settings.php
   - echo "require_once 'sites/all/conf/master.settings.inc';" >> sites/default/settings.php
   - sudo chmod -w sites/default/settings.php
   - drush en master -y
-  - drush master-ensure-modules --scope=local -y
+  - drush --verbose master-ensure-modules --scope=local -y
   - drush en ddc_theme -y
   - drush vset theme_default ddc_theme -y
   - drush dis bartik -y
