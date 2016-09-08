@@ -1,9 +1,14 @@
 #!/bin/bash
 set -x
 
+if [ -z "$DB_PASSWORD" ]
+else
+  DB_PASSWORD=":$DB_PASSWORD"
+fi
+
 
 sudo chmod +w $DRUPAL_ROOT/sites/default
-drush -r $DRUPAL_ROOT si standard --db-url="mysql://$DB_USERNAME:$DB_PASSWORD@127.0.0.1/$DATABASE" --site-name=$SITENAME --site-mail=$SITEMAIL -y
+drush -r $DRUPAL_ROOT si standard --db-url="mysql://$DB_USERNAME$DB_PASSWORD@127.0.0.1/$DATABASE" --site-name=$SITENAME --site-mail=$SITEMAIL -y
 
 sudo chmod +w $DRUPAL_ROOT/sites/default/settings.php
 echo "require_once 'sites/all/conf/master.settings.inc';" >> $DRUPAL_ROOT/sites/default/settings.php
