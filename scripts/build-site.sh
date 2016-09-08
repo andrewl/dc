@@ -2,6 +2,7 @@
 set -x
 
 if [ -z "$DB_PASSWORD" ]; then
+  echo "DB_PASSWORD not set. This might not be a problem."
 else
   DB_PASSWORD=":$DB_PASSWORD"
 fi
