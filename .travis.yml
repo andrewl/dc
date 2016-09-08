@@ -12,41 +12,41 @@ env:
 mysql:
   database: $DATABASE
   username: $DB_USERNAME
-  encoding: $DB_ENCODE
 
 before_install:
+  - sudo apt-get update
   - composer self-update
   - composer global require drush/drush
 
 before_script:
-  - sudo apt-get update
-  - sudo apt-get install -y --force-yes apache2 libapache2-mod-fastcgi make
-  - sudo apt-get install -y --force-yes php5-dev php-pear php5-mysql php5-curl php5-gd php5-json php5-sqlite php5-pgsql
+  - sudo apt-get install apache2 libapache2-mod-fastcgi
   # enable php-fpm
-  - cp travis-support/www.conf ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/
+  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
   - sudo a2enmod rewrite actions fastcgi alias
   - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   # configure apache virtual hosts
   - sudo cp -f travis-support/apache-vhost.conf /etc/apache2/sites-available/default
-  - cat /etc/apache2/sites-available/default
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
   - sudo service apache2 restart
+
+install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - drush dl drupal-7.x --destination=$DRUPAL_ROOT -y
+  - drush dl drupal-7.x -y
+  - cd drupal
   - drush si minimal --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" -y
-  - echo "require_once 'sites/all/conf/master.settings.inc';" >> $DRUPAL_ROOT/sites/default/settings.php
-  - drush -r $DRUPAL_ROOT en master -y
-  - drush -r $DRUPAL_ROOT master-ensure-modules --scope=local -y
-  - drush -r $DRUPAL_ROOT en ddc_theme -y
-  - drush -r $DRUPAL_ROOT vset theme_default ddc_theme -y
-  - drush -r $DRUPAL_ROOT dis bartik -y
-  - drush -r $DRUPAL_ROOT fr ddc_search ddc_block -y
-  - drush -r $DRUPAL_ROOT gent tags 7 -y
-  - drush -r $DRUPAL_ROOT genc --types=author 10 0 -y
-  - drush -r $DRUPAL_ROOT genc --types=article 500 0 -y
-  - drush -r $DRUPAL_ROOT eval 'node_access_rebuild();'
-  - drush -r $DRUPAL_ROOT ucrt ronald --password="password"
+  - echo "require_once 'sites/all/conf/master.settings.inc';" >> sites/default/settings.php
+  - drush -r en master -y
+  - drush -r master-ensure-modules --scope=local -y
+  - drush -r en ddc_theme -y
+  - drush -r vset theme_default ddc_theme -y
+  - drush -r dis bartik -y
+  - drush -r fr ddc_search ddc_block -y
+  - drush -r gent tags 7 -y
+  - drush -r genc --types=author 10 0 -y
+  - drush -r genc --types=article 500 0 -y
+  - drush -r eval 'node_access_rebuild();'
+  - drush -r ucrt ronald --password="password"
 
 script:
   - curl "http://127.0.0.1"
