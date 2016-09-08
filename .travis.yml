@@ -36,6 +36,7 @@ install:
   - sudo chmod +w sites/default/settings.php
   - echo "require_once 'sites/all/conf/master.settings.inc';" >> sites/default/settings.php
   - sudo chmod -w sites/default/settings.php
+  - drush en master -y
   - drush master-ensure-modules --scope=local -y
   - drush en ddc_theme -y
   - drush vset theme_default ddc_theme -y
