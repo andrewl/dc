@@ -31,7 +31,7 @@ before_install:
 
 install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - drush dl drupal-7.x -y
+  - drush dl drupal-7.x -y --drupal-project-rename drupal
   - cd drupal
   - drush si minimal --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" -y
   - echo "require_once 'sites/all/conf/master.settings.inc';" >> sites/default/settings.php
