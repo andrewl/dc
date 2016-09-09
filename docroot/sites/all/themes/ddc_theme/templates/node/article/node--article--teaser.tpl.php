@@ -13,6 +13,9 @@
           <?php print render($content['field_image']); ?>
         </div>
         <div class="media-body">
+          <?php if (!empty($article_prefix)) { ?>
+            <p><strong><?php print $article_prefix; ?></strong></p>
+          <?php } ?>
           <h1><?php print $linked_title; ?></h1>
           <p><strong><?php print render($content['field_subtitle']); ?></strong></p>
           <p><?php print render($content['field_author']); ?> <?php print render($content['field_publication_date']); ?></p>
