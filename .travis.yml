@@ -42,5 +42,4 @@ install:
   - composer update
 
 script:
-  - cd $DRUPAL_ROOT/../tests
   - ./bin/behat
