@@ -37,6 +37,7 @@ function ddc_theme_preprocess_node__article__teaser(&$variables) {
   // @todo - should check whether we actually have a node, perhaps wrap the object too?
   if ($variables['node']->field_special[LANGUAGE_NONE][0]['value'] == 1) {
     $variables['article_class'] = "special";
+    $variables['article_prefix'] = t("Exclusive for registered users");
   }
 
 }
