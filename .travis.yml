@@ -38,6 +38,9 @@ install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - cd scripts
   - ./build-site.sh
+  - cd ../tests
+  - composer update
 
 script:
-  - curl "http://127.0.0.1"
+  cd $DRUPAL_ROOT/../tests
+  ./bin/behat
