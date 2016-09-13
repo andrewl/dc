@@ -1,22 +1,19 @@
 <?php
-/**
- * @file
- * Wrapper class for Authors.
- *
- * This enables us to wrap functionality associated with authors 
- * into a single class.
- */
+
 namespace Drupal\ddc_author\Author;
 
 use \EntityDrupalWrapper;
 
+/**
+ * Contains functionality to aid development with Author entity types.
+ */
 class AuthorWrapper extends EntityDrupalWrapper {
 
   /**
    * Creates the AuthorWrapper from a nid.
    *
    * @param int $nid
-   *   nid of the author. 
+   *   The nid of the author.
    */
   public function __construct($nid) {
     parent::__construct('node', $nid);
@@ -26,15 +23,16 @@ class AuthorWrapper extends EntityDrupalWrapper {
    * Get a list of article nids that the Author has written.
    *
    * @return int[]
-   *   An array of article titles keyed by nid of articles that this author has written.
+   *   An array of article titles keyed by nid of articles that
+   *   this author has written.
    */
   public function getArticles() {
     $articles = array();
 
     $query = new \EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
-          ->entityCondition('bundle', 'article') 
-          ->fieldCondition('field_author', 'target_id', $this->id, '=');
+      ->entityCondition('bundle', 'article')
+      ->fieldCondition('field_author', 'target_id', $this->id, '=');
     $result = $query->execute();
 
     if (isset($result['node']) && is_array($result['node'])) {
@@ -45,4 +43,5 @@ class AuthorWrapper extends EntityDrupalWrapper {
 
     return $articles;
   }
+
 }
