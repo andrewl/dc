@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code to prevent users from viewing articles they're not entitled to.
@@ -6,8 +7,6 @@
 
 /**
  * Implements hook_node_access_records().
- *
- *
  */
 function ddc_article_permissions_node_access_records($node) {
 
@@ -41,12 +40,12 @@ function ddc_article_permissions_node_access_records($node) {
 function ddc_article_permissions_node_grants($account, $op) {
   $grants = array();
 
-	if ($account->uid == 0) {
+  if ($account->uid == 0) {
     $grants['ddc_special_article'][] = array(1001);
   }
   else {
     $grants['ddc_special_article'][] = array(1002);
   }
-  
+
   return $grants;
 }
