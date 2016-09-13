@@ -135,7 +135,7 @@ function ddc_search_default_search_api_server() {
       "path" : "\\/solr",
       "http_user" : "",
       "http_pass" : "",
-      "excerpt" : 0,
+      "excerpt" : 1,
       "retrieve_data" : 0,
       "highlight_data" : 0,
       "skip_schema_check" : 0,
