@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * ddc_article.features.taxonomy.inc
